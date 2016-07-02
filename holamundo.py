@@ -368,9 +368,15 @@ class Ui_MainWindow(object):
             arduino.write('OnLeds9\n')
 
     def obtenerValorLDR(self):
+        self.lcdLdr.display('0')
+        arduino.flushInput()
+        arduino.flushOutput()
+        valor = 0
         arduino.write('LDR\n')
-        #arduino.read(valor)
-        self.lcdLdr.display('255\n')
+        time.sleep(.1)
+        valor = arduino.read()
+        print(valor)
+        self.lcdLdr.display(valor)
 
 
     def girarServo10(self):
@@ -401,7 +407,9 @@ class Ui_MainWindow(object):
         arduino.write('Bocina\n')
 
     def probarInterruptores(self):
-        #getSerial=arduino.write('Interruptores\n')
+        self.lcd_Interruptor10.display('0')
+        self.lcd_Interruptor11.display('0')
+        self.lcd_Interruptor12.display('0')
         arduino.flushInput()
         arduino.flushOutput()
         arduino.write('Interruptores\n')
@@ -409,12 +417,12 @@ class Ui_MainWindow(object):
         time.sleep(.1)
         boton = arduino.readline()
         print(boton)
-        if(boton=="10"):
-            print (boton)
-        if(boton=="11"):
-            print(boton)
-        if(boton=="12"):
-            print(boton)
+        if(boton=="10\r\n"):
+            self.lcd_Interruptor10.display('5 ')
+        if(boton=="11\r\n"):
+            self.lcd_Interruptor11.display('5 ')
+        if(boton=="12\r\n"):
+            self.lcd_Interruptor12.display('5 ')
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "IT10-Edukit", None))

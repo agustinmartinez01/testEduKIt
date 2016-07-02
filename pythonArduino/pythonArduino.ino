@@ -122,19 +122,24 @@ void loop() {
         delay(500);
         digitalWrite(13,LOW);
     }
+
+     if(in =="LDR\n"){
+      int  a = analogRead(2);
+      Serial.print(a);
+      Serial.write("\r\n");
+    } 
     
     
     if (in == "Interruptores\n"){
       if(digitalRead(10)==HIGH){
-        Serial.println("10");
+        Serial.write("10\r\n");
       }
       if(digitalRead(11)==HIGH){
-        Serial.println("11");
+        Serial.write("11\r\n");
       }
       if(digitalRead(12)==HIGH){
-        Serial.println("12");
+        Serial.write("12\r\n");
       }
-      Serial.println("");
     }
     
     
