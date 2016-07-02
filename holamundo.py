@@ -403,8 +403,19 @@ class Ui_MainWindow(object):
     def probarInterruptores(self):
         #getSerial=arduino.write('Interruptores\n')
         i = 0
-        hilo = MiHilo(name="Interruptores".format(1))
-        hilo.start()
+        arduino.write('Interruptores\n')
+        arduino.flush()
+        boton=''
+        boton = arduino.read()+arduino.read()
+        if(boton=="10"):
+            print (boton)
+        if(boton=="11"):
+            print(boton)
+        if(boton=="12"):
+            print(boton)
+        arduino.write('')
+        #hilo = MiHilo(name="Interruptores".format(1))
+        #hilo.start()
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "IT10-Edukit", None))
