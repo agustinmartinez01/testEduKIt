@@ -127,18 +127,24 @@ void loop() {
       int  a = analogRead(2);
       Serial.print(a);
       Serial.write("\r\n");
+      Serial.flush();
     } 
     
     
     if (in == "Interruptores\n"){
+      Serial.flush();
       if(digitalRead(10)==HIGH){
         Serial.write("10\r\n");
-      }
-      if(digitalRead(11)==HIGH){
-        Serial.write("11\r\n");
-      }
-      if(digitalRead(12)==HIGH){
-        Serial.write("12\r\n");
+      }else{
+        if(digitalRead(11)==HIGH){
+          Serial.write("11\r\n");
+        }else{
+          if(digitalRead(12)==HIGH){
+            Serial.write("12\r\n");
+          }else{
+            Serial.write("0\r\n");
+          }
+        }
       }
     }
     
