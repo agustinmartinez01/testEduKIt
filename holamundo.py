@@ -331,7 +331,7 @@ class Ui_MainWindow(object):
         global arduino
         current_Text = self.listarPuertos.currentText()
         print (current_Text)
-        arduino = serial.Serial(str(current_Text), 9600, timeout = 3.0)
+        arduino = serial.Serial(str(current_Text), 9600)
         #return arduino
 
     def offleds_Click(self):
@@ -402,20 +402,19 @@ class Ui_MainWindow(object):
 
     def probarInterruptores(self):
         #getSerial=arduino.write('Interruptores\n')
-        i = 0
+        arduino.flushInput()
+        arduino.flushOutput()
         arduino.write('Interruptores\n')
-        arduino.flush()
         boton=''
-        boton = arduino.read()+arduino.read()
+        time.sleep(.1)
+        boton = arduino.readline()
+        print(boton)
         if(boton=="10"):
             print (boton)
         if(boton=="11"):
             print(boton)
         if(boton=="12"):
             print(boton)
-        arduino.write('')
-        #hilo = MiHilo(name="Interruptores".format(1))
-        #hilo.start()
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "IT10-Edukit", None))
