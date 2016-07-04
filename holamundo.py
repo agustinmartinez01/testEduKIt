@@ -295,9 +295,7 @@ class Ui_MainWindow(object):
         self.botonProbarInt.setObjectName(_fromUtf8("botonProbarInt"))
         self.botonProbarInt.clicked.connect(self.probarInterruptores)
         self.tabWidget.addTab(self.tab_6, _fromUtf8(""))
-        self.commandLinkButton = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton.setGeometry(QtCore.QRect(220, 390, 161, 31))
-        self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
+        
         self.listarPuertos = QtGui.QComboBox(self.centralwidget)
         self.listarPuertos.setGeometry(QtCore.QRect(150, 0, 121, 31))
         self.listarPuertos.setObjectName(_fromUtf8("listarPuertos"))
@@ -371,12 +369,12 @@ class Ui_MainWindow(object):
         self.lcdLdr.display('0')
         arduino.flushInput()
         arduino.flushOutput()
-        valor = 0
+        #valor = 0
         arduino.write('LDR\n')
         time.sleep(.1)
-        valor = arduino.read()
-        print(valor)
-        self.lcdLdr.display(valor)
+        #valor = arduino.readline()
+        #print(valor)
+        self.lcdLdr.display(arduino.readline())
 
 
     def girarServo10(self):
@@ -461,7 +459,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Interruptor D12", None))
         self.botonProbarInt.setText(_translate("MainWindow", "Probar", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "Interruptores", None))
-        self.commandLinkButton.setText(_translate("MainWindow", "www.it10coop.com.ar", None))
+        
         self.buscarPuertos.setText(_translate("MainWindow", "Buscar Puertos", None))
 
 
